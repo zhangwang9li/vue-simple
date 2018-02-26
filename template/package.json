@@ -35,6 +35,9 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
     {{#lint}}
     "babel-eslint": "^8.2.1",
     "eslint": "^4.15.0",
