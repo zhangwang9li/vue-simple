@@ -1,0 +1,424 @@
+@import "color";
+input, textarea, .el-message-box__message{
+  font-size: 12px!important;
+  font-family: 宋体!important;
+}
+.layout-div{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.icon{
+  font-size: 10px;
+  cursor: pointer;
+  color: #8c93a6;
+  &:hover{
+    color: #4c84ff;
+  }
+}
+.icon.icon-guanbi{
+  font-size: 11px;
+  color: #19233c;
+}
+.icon-small-button{
+  font-size: 11px;
+  cursor: pointer;
+  color: #8c93a6;
+  &:hover{
+    color: #4c84ff;
+  }
+}
+.iconbutton{
+  font-size: 18px;
+  cursor: pointer;
+  color: #8c93a6;
+  &:hover{
+    color: #4c84ff;
+  }
+}
+/*el弹出层和下拉选择项css*/
+.el-popper{
+  margin: 0 !important;
+}
+.el-dropdown-link{
+  font-size: 12px!important;font-family: 宋体!important;
+}
+.el-dropdown-menu{
+  margin: 0 !important;
+  .el-dropdown-menu__item{
+    font-size: 12px!important;
+    font-family: 宋体!important;
+  }
+}
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+  background-color: $color6!important;
+  color: $color5!important;
+}
+.el-select-dropdown__item{
+  font-size: 12px!important;
+  font-family: 宋体!important;
+  height: 32px!important;
+  line-height: 32px!important;
+}
+.el-select-dropdown__item:focus, .el-select-dropdown__item:not(.is-disabled):hover{
+  background-color: $color6!important;
+  color: $color5!important;
+}
+/*el的tab选择项css*/
+.el-tabs__item{
+  font-size: 12px!important;
+  color: #19233c!important;
+}
+.el-tabs__item:hover{
+  color: #4c84ff!important;
+}
+.el-tabs__item.is-active{
+  color: #4c84ff!important;
+}
+
+/* element table的样式修改 */
+.el-table{
+  border: none !important;
+}
+.el-table tr{
+  height: 30px!important;
+}
+.el-table td{
+  padding: 0px!important;
+}
+.el-table::after,.el-table::before{
+  background: none !important;
+}
+.el-table--fit{
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+}
+.el-table__header .cell{
+  font-size: 12px !important;
+  font-family: "宋体"!important;
+  font-weight: normal !important;
+  color: #19233c!important;
+  background:#f5f6fa;
+}
+.el-table__header th{
+  height: 35px!important;
+  padding: 0px!important;
+  background:#f5f6fa;
+}
+.el-table__header .el-table td, .el-table th.is-leaf {
+  border-bottom: none;
+}
+tr.el-table__row:hover td {
+  //background:  red !important;
+}
+tr.el-table__row td {
+  //background:  red !important;
+  color: #19233c!important;
+}
+.el-table .cell{
+  text-align: center;
+  padding: 0 5px !important;
+}
+
+.el-table td,  .el-table th.is-leaf {
+  border-bottom: 1px solid #edeef0 !important;
+}
+.eltable-row{
+  font-family: 宋体;
+  font-size: 12px;
+}
+.el-table__empty-text{
+  font-size: 12px!important;
+}
+
+/* element 分页的样式修改 */
+
+.el-pagination__total{
+  font-size: 12px!important;
+  font-family: 宋体!important;
+}
+.el-pager li.number{
+  font-size: 12px!important;
+  font-family: 宋体!important;
+  font-weight: normal!important;
+}
+/* element dialog的样式修改统一 */
+
+.el-dialog__header{
+  padding: 0px!important;
+  height: 36px!important;
+  background-color: #f5f6fa!important;
+  span{
+    line-height: 36px!important;
+    font-size: 12px!important;
+    padding-left: 10px;
+  }
+  .el-dialog__headerbtn{
+    top: 13px!important;
+    right: 8px!important;
+    font-size: 10px!important;
+  }
+}
+.el-dialog__body{
+  padding: 20px 10px 0px !important;
+  .no-label{
+    &:last-child{
+      margin-bottom: 0px!important;
+    }
+    .el-form-item__label{
+      display: none!important;
+    }
+  }
+}
+.el-dialog__footer{
+  padding: 0px 10px!important;
+  height: 68px;
+  line-height: 68px;
+}
+/* el-button 样式修改*/
+.el-button.dialog-button{
+  padding: 0px 13px!important;
+  height: 28px!important;
+  line-height: 27px!important;
+  border-radius: 14px!important;
+  box-shadow: none!important;
+  min-width: 64px!important;
+  font-size: 12px!important;
+}
+.el-button.dialog-button.qu_xiao{
+  font-family: 宋体!important;
+  color: #8c93a6!important;
+  background-color: #f5f6fa!important;
+  &:hover{
+    background-color: #f5f6fa!important;
+    border-color: #dcdfe6!important;
+    color: #4c84ff!important;
+  }
+  &:active{
+    border-color: #dcdfe6!important;
+    color: #4c84ff!important;
+  }
+}
+.el-button.dialog-button.bao_cun{
+  border: none!important;
+  font-family: 宋体!important;
+  color: #fff!important;
+  background-color: #4c84ff!important;
+  &:hover{
+    background-color: #4c84ff!important;
+    border-color: #4c84ff!important;
+  }
+  &:active{
+    border-color: #4c84ff!important;
+  }
+  i{
+    font-size: 11px;
+    color: #fff!important;
+  }
+}
+.el-button.el-button--text{
+  font-family: 宋体!important;
+  font-size: 12px!important;
+  color: #4c84ff;
+}
+.el-checkbox, .el-checkbox__label{
+  font-family: 宋体!important;
+  font-size: 12px!important;
+}
+
+.el-checkbox .el-checkbox__inner{
+  width: 12px!important;
+  height: 12px!important;
+  &::after{
+    left: 3px!important;
+    top: 0px!important;
+  }
+}
+/* 地图浮层数样式*/
+.map-float-body{
+  z-index: 10;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #edeef0;
+  box-shadow: 0 1px 1px rgba(25,35,62,0.35);
+  border-radius: 2px;
+}
+.amap-logo, .amap-copyright{
+  display: none!important;
+}
+.map-marker-div{
+  height: 50px;width: 104px;position: absolute;
+  img{
+    top: 12px;left: -12px;position: absolute;
+  }
+  ul{
+    left: 20px;position: absolute;
+    li{
+      list-style: none;
+      width: 72px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 12px;
+      font-family: 宋体;
+      background-color: #dbe7ff;
+      color: #4c84ff;
+      text-align: center;
+    }
+    li:first-child{
+      margin-bottom: 2px;
+    }
+  }
+}
+.amap-info-close{
+  display: none!important;
+}
+.amap-info-content{
+  padding: 0 !important;
+  overflow: hidden!important;
+}
+.info-xq-el-row{
+  margin: 10px 10px 0 10px;
+  .el-row{
+    padding: 6px 0 !important;
+    .el-col:first-child{width: 78px!important;text-align: right;padding-right: 10px}
+    .el-col:last-child{width: calc(100% - 78px)!important;text-align: left}
+  }
+  .el-row:last-child{
+    padding-bottom: 15px!important;
+    border-bottom: 1px dashed #edeef0;
+  }
+}
+.amap-geolocation-con{
+  bottom: 75px!important;
+  right: 20px!important;
+  width: 26px!important;
+  height: 26px!important;
+  border-radius: 2px!important;
+  border:1px solid #edeef0!important;
+  box-shadow: 0 1px 1px rgba(25,35,62,0.35);
+  .amap-geo{
+    width: 24px!important;
+    height: 24px!important;
+    border:none!important;
+  }
+}
+
+/* 数据列表样式*/
+.data-list{
+  background-color: #f5f6fa;
+}
+.data-list-seach{
+  background-color: #fff;
+  width: calc(100% - 15px);height:calc(100% - 30px);margin: 15px 0 15px 15px;
+  border: 1px solid #edeef0;
+  .collapse-open{
+    width: 13px;height: 25px;position: absolute;top: 0;right: 0;line-height: 25px;text-align: center;background-color: rgba(191, 197, 209, 1)
+  }
+}
+.data-list-cont{
+  width: calc(100% - 30px);height:calc(100% - 30px);margin: 15px;background-color: #fff;
+  border: 1px solid #edeef0;
+  .collapse-close{
+    width: 13px;height: 25px;position: absolute;top: 0;left: 0;line-height: 25px;text-align: center;background-color: rgba(191, 197, 209, 1)
+  }
+  header ul li{
+    list-style: none;float: left;padding: 0 10px;
+  }
+  header ul li i{
+    color: #4c84ff;
+    padding-right: 6px;
+  }
+}
+.data-list-seach-form{
+  .el-form-item{
+    margin-bottom: 15px!important;
+    height: 30px!important;
+    .el-form-item__label{
+      font-size: 12px!important;
+      font-family: 宋体!important;
+      height: 28px!important;
+      line-height: 28px!important;
+      padding: 0 8px 0 0!important;
+    }
+    .el-form-item__content{
+      height: 28px!important;
+      line-height: 28px!important;
+    }
+    .el-input, .el-input__inner{
+      height: 28px!important;
+      border-radius: 15px!important;
+      line-height: 28px!important;
+    }
+    .el-date-editor {
+      line-height: 28px!important;
+    }
+    .el-date-editor.el-range-editor{
+      padding:0px 3px!important;
+      line-height: 1!important;
+      .el-input__icon.el-icon-date{
+        line-height: 20px!important;
+      }
+      .el-range-input{
+        margin-top: -3px;
+        width: 30% !important;
+        height: 20px!important;
+      }
+      .el-range-separator{
+        margin-top: -3px;
+        font-size: 12px!important;
+        font-family: 宋体!important;
+        padding:0px 1px!important;
+        width: 14px;
+      }
+      .el-range__close-icon{
+        width: 18px;
+        line-height: 1!important;
+      }
+    }
+  }
+}
+.data-list-cont-table{
+  padding: 0 15px;
+  .el-table td i{
+    font-size: 11px;
+  }
+  .el-table td i.icon-shanchu{
+    font-size: 12px;
+  }
+}
+// element dialog的样式修改统一 基础上附加数据dialog的样式
+.data-dialog .el-dialog__body{
+  padding: 0px!important;
+}
+.el-date-editor{
+  .el-input__inner{
+    padding-left: 15px!important;
+  }
+  span.el-input__prefix{
+    right: 5px!important;
+    left: auto!important;
+    i.el-input__icon{line-height: 30px!important;}
+  }
+  span.el-input__suffix{
+    right: 25px!important;
+    left: auto!important;
+    i.el-input__icon{line-height: 30px!important;}
+  }
+}
+.el-radio-button__orig-radio:checked+.el-radio-button__inner{
+  color: #8c93a6!important;
+  background-color: #f5f6fa!important;
+  border-color: #edeef0!important;
+  -webkit-box-shadow: -1px 0 0 0 #f5f6fa!important;
+  box-shadow: -1px 0 0 0 #f5f6fa!important;
+}
+/*圆角的input*/
+.el-input__inner:focus{
+  border-color: #4c84ff!important;
+}
+.input-yuan .el-input__inner{
+  height: 28px!important;
+  line-height: 24px!important;
+  border-radius: 14px!important;
+  border: 1px solid #edeef0!important;
+}
