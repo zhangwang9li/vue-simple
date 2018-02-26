@@ -1,12 +1,12 @@
-# webpack?????
+# webpack Project template
 
-> ???? Vue 2.0+ Webpack + `vue-loader` ??????.?????https://github.com/zhangwang9li/vue-simple
+> Fast building this project use Vue 2.0 + Webpack + `vue-loader` .Project address:https://github.com/zhangwang9li/vue-simple
 
-> ????????
+> If there is a new requirement, please ask at Github
 
-### ??
+### Usage
 
-????????? ??vue-cli (https://github.com/vuejs/vue-cli).
+Use templates need to be installed [vue-cli](https://github.com/vuejs/vue-cli).
 
 ``` bash
 $ npm install -g vue-cli
@@ -16,29 +16,31 @@ $ npm install
 $ npm run dev
 ```
 
-### ??
-> api ??????
+### Included
+> api ----Interface configuration file
 
-> assets ????css????
+> assets ----Built-in resource CSS resource file
 
-> pages ?????
+> pages ----Page resource library
 
-> components ??2??????
+> components ----Reuse more than 2 component libraries
 
-> vuex  ?????????????
+> vuex  ----[vuex](https://vuex.vuejs.org/zh-cn/intro.html).
 
-> App.vue ????
+> App.vue ----Page entry
 
-> Login.vue ???
+> Login.vue ----Login page
 
-> main.js vue????js
+> main.js ---Vue starts the main JS
 
-> mk.js ????js
+> mk.js ----Internal operation JS
 
-> routes.js vue??????js
+> routes.js ----Vue page routing configuration JS
 
-> static ????????js??
-### ????
+> static ----JS files that have been compiled by third parties
+
+### Common instruction
+
 - `npm run dev`: Webpack + `vue-loader` with proper config for source maps & hot-reload.
 
 - `npm run build`: build with HTML/CSS/JS minification.
