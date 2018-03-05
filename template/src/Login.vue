@@ -89,7 +89,7 @@
 
         let addRoutes = [{
           path: '/mainpage',
-          component: require('./pages/Mainpage.vue'),
+          component: () => import('./pages/Mainpage.vue'),
           name: '',
           isMenu: true,
           children: zy
