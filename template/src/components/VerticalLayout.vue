@@ -7,9 +7,9 @@
     <header :style="'height: '+ (hIsCollapse ? hHeightOpen : hHeightColse)">
       <slot name="header"></slot>
     </header>
-    <main class="verticalLayout-main" :style="'height:calc(100% - '+ (hIsCollapse ? hHeightOpen : hHeightColse) + ' - ' + (fIsCollapse ? fHeightOpen : fHeightColse) + ')'">
+    <div class="verticalLayout-main" :style="'height:calc(100% - '+ (hIsCollapse ? hHeightOpen : hHeightColse) + ' - ' + (fIsCollapse ? fHeightOpen : fHeightColse) + ')'">
       <slot></slot>
-    </main>
+    </div>
     <footer :style="'height: '+ (fIsCollapse ? fHeightOpen : fHeightColse)">
       <slot name="footer"></slot>
     </footer>

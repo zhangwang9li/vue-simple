@@ -7,9 +7,9 @@
     <aside :style="'width: '+ (lIsCollapse ? lWidthOpen : lWidthColse)">
       <slot name="left"></slot>
     </aside>
-    <main class="horizontalLayout-main" :style="'width:calc(100% - '+ (lIsCollapse ? lWidthOpen : lWidthColse) + ' - ' + (rIsCollapse ? rWidthOpen : rWidthColse) + ')'">
+    <div class="horizontalLayout-main" :style="'width:calc(100% - '+ (lIsCollapse ? lWidthOpen : lWidthColse) + ' - ' + (rIsCollapse ? rWidthOpen : rWidthColse) + ')'">
       <slot></slot>
-    </main>
+    </div>
     <section :style="'width: '+ (rIsCollapse ? rWidthOpen : rWidthColse)">
       <slot name="right"></slot>
     </section>
