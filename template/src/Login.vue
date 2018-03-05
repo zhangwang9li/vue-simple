@@ -7,7 +7,7 @@
             <img src="../static/img/logo.png" alt="" width="48px" height="48px">
           </div>
           <div style="float: left;padding-left: 20px;padding-top: 18px;">
-            <p>道路运输行业安全辅助系统</p>
+            <p>xxxx系统</p>
             <!--<span >Road transport industry safety support system</span>-->
           </div>
         </div>
@@ -126,7 +126,7 @@
                     localStorage.removeItem('user')
                   }
                   sessionStorage.setItem('user', JSON.stringify(resp.data))
-//                  this.checkJs(resp.data.mks)
+//                  this.checkJs(resp.data.mks)  数据库数据或者自己测试数据组装页面构成
                   this.checkJs(
                     [{
                       'mkid': '00',
