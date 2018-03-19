@@ -49,392 +49,126 @@
 </template>
 
 <script>
-  import {mkTree} from './mk'
+import {mkTree} from './mk'
 
-  export default {
-    name: 'hello',
-    data () {
-      return {
-        loginLoading: false,
-        checked: false,
-        form: {
-          name: '',
-          pwd: ''
-        },
-        formRules: {
-          name: [
-            {required: true, message: '请输入账号', trigger: 'blur'}
-          ],
-          pwd: [
-            {required: true, message: '请输入密码', trigger: 'blur'}
-          ]
-        }
-      }
-    },
-    methods: {
-      checkJs (mks) {
-        console.log('mks', mks)
-        let menu = mkTree(mks)
-        localStorage.setItem('mks', JSON.stringify(mks))
-        localStorage.setItem('menu', JSON.stringify(menu))
-        let zy = []
-        menu.map(item => {
-          if (item.zj !== '') {
-            zy.push(item)
-          }
-          item.children.map(c => {
-            zy.push(c)
-          })
-        })
-
-        let addRoutes = [{
-          path: '/mainpage',
-          component: () => import('./pages/Mainpage.vue'),
-          name: '',
-          isMenu: true,
-          children: zy
-        }]
-        console.log(addRoutes)
-        sessionStorage.setItem('Routers', JSON.stringify(addRoutes))
-        this.$router.addRoutes(addRoutes)
-        this.$router.push({path: '/mainpage'})
+export default {
+  name: 'hello',
+  data () {
+    return {
+      loginLoading: false,
+      checked: false,
+      form: {
+        name: '',
+        pwd: ''
       },
-      onLogin () {
-        var loginParams = {username: this.form.name, password: this.form.pwd}
-        this.$refs.form.validate((valid) => {
-          if (valid) {
-            this.loginLoading = true
-            this.$api.login(loginParams).then(resp => {
-              console.log(resp)
-              this.loginLoading = false
-              if (resp.status !== 200) {
-                this.$message({
-                  message: '出错了',
-                  type: 'error'
-                })
-              } else {
-                console.log('resp.data', resp.data.result)
-                if (resp.data.code === 400) {
-                  this.$message({
-                    message: resp.data.message,
-                    type: 'error'
-                  })
-                } else {
-                  if (this.checked) {
-                    localStorage.setItem('user', JSON.stringify(loginParams))
-                  } else {
-                    localStorage.removeItem('user')
-                  }
-                  sessionStorage.setItem('user', JSON.stringify(resp.data))
-//                  this.checkJs(resp.data.mks)  数据库数据或者自己测试数据组装页面构成
-                  this.checkJs(
-                    [{
-                      'mkid': '00',
-                      'fmkid': '',
-                      'mkname': '首页',
-                      'name': '首页',
-                      'url': '/sy',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0000',
-                      'fmkid': '00',
-                      'mkname': '首页',
-                      'name': '首页',
-                      'url': '/homepage',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': '/HomePage'
-                    }, {
-                      'mkid': '01',
-                      'fmkid': '',
-                      'mkname': '车辆监控',
-                      'name': '车辆监控',
-                      'url': '/ssjk',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0101',
-                      'fmkid': '01',
-                      'mkname': '车辆实时监控',
-                      'name': '车辆实时监控',
-                      'url': '/ssjk-clssjk',
-                      'img': '',
-                      'zj': '/cljk/Cljigl'
-                    }, {
-                      'mkid': '0102',
-                      'fmkid': '01',
-                      'mkname': '历史轨迹回放',
-                      'name': '历史轨迹回放',
-                      'url': '/ssjk-lsgjhf',
-                      'img': '',
-                      'zj': '/cljk/Lsgjhf'
-                    }, {
-                      'mkid': '0103',
-                      'fmkid': '01',
-                      'mkname': '视频监控',
-                      'name': '视频监控',
-                      'url': '/ssjk-spjk',
-                      'img': '',
-                      'zj': '/cljk/Spjk'
-                    }, {
-                      'mkid': '0104',
-                      'fmkid': '01',
-                      'mkname': '历史视频',
-                      'name': '历史视频',
-                      'url': '/ssjk-lssp',
-                      'img': '',
-                      'zj': '/cljk/Lssp'
-                    }, {
-                      'mkid': '0105',
-                      'fmkid': '01',
-                      'mkname': '监管巡查',
-                      'name': '监管巡查',
-                      'url': '/ssjk-jgxc',
-                      'img': '',
-                      'zj': '/cljk/Jgxc'
-                    }, {
-                      'mkid': '02',
-                      'fmkid': '',
-                      'mkname': '预警信息处理',
-                      'name': '预警信息处理',
-                      'url': '/yjxx',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0201',
-                      'fmkid': '02',
-                      'mkname': '预警信息处理',
-                      'name': '预警信息处理',
-                      'url': '/yjxx-yjxxcl',
-                      'img': '',
-                      'zj': '/yjxx/Yjxxcl'
-                    }, {
-                      'mkid': '04',
-                      'fmkid': '',
-                      'mkname': '主动安全预警',
-                      'name': '主动安全预警',
-                      'url': '/zdaq',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0401',
-                      'fmkid': '04',
-                      'mkname': '主动安全预警',
-                      'name': '主动安全预警',
-                      'url': '/zdaq-zdaqfx',
-                      'img': '',
-                      'zj': '/zdaq/Zdaqfx'
-                    }, {
-                      'mkid': '05',
-                      'fmkid': '',
-                      'mkname': '驾驶员分析',
-                      'name': '驾驶员分析',
-                      'url': '/jsyfx',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0501',
-                      'fmkid': '05',
-                      'mkname': '驾驶员分析',
-                      'name': '驾驶员分析',
-                      'url': '/jsyfx-jsyfx',
-                      'img': '',
-                      'zj': '/jsyxwfx/Jsyfx'
-                    }, {
-                      'mkid': '06',
-                      'fmkid': '',
-                      'mkname': '基础信息',
-                      'name': '基础信息',
-                      'url': '/jbxx',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0601',
-                      'fmkid': '06',
-                      'mkname': '企业信息管理',
-                      'name': '企业信息管理',
-                      'url': '/jbxx-qyxx',
-                      'img': '',
-                      'zj': '/jbxx/Qyxx'
-                    }, {
-                      'mkid': '0602',
-                      'fmkid': '06',
-                      'mkname': '车队信息管理',
-                      'name': '车队信息管理',
-                      'url': '/jbxx-cdxx',
-                      'img': '',
-                      'zj': '/jbxx/Cdxx'
-                    }, {
-                      'mkid': '0603',
-                      'fmkid': '06',
-                      'mkname': '车辆信息管理',
-                      'name': '车辆信息管理',
-                      'url': '/jbxx-clxx',
-                      'img': '',
-                      'zj': '/jbxx/Clxx'
-                    }, {
-                      'mkid': '0604',
-                      'fmkid': '06',
-                      'mkname': '驾驶员档案管理',
-                      'name': '驾驶员档案管理',
-                      'url': '/jbxx-jsyxx',
-                      'img': '',
-                      'zj': '/jbxx/Jsyxx'
-                    }, {
-                      'mkid': '07',
-                      'fmkid': '',
-                      'mkname': '排班管理',
-                      'name': '排班管理',
-                      'url': '/pbgl',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0701',
-                      'fmkid': '07',
-                      'mkname': '排班管理',
-                      'name': '排班管理',
-                      'url': '/pbgl-pbgl',
-                      'img': '',
-                      'zj': '/pbgl/Zbgl'
-                    }, {
-                      'mkid': '08',
-                      'fmkid': '',
-                      'mkname': '系统管理',
-                      'name': '系统管理',
-                      'url': '/xtgl',
-                      'img': 'iconfont icon-binghaijilu',
-                      'zj': ''
-                    }, {
-                      'mkid': '0801',
-                      'fmkid': '08',
-                      'mkname': '用户管理',
-                      'name': '用户管理',
-                      'url': '/xtgl-yhxx',
-                      'img': '',
-                      'zj': '/xtgl/Yhxx'
-                    }, {
-                      'mkid': '0802',
-                      'fmkid': '08',
-                      'mkname': '权限管理',
-                      'name': '权限管理',
-                      'url': '/xtgl-qxgl',
-                      'img': '',
-                      'zj': '/xtgl/Qxgl'
-                    }, {
-                      'mkid': '0803',
-                      'fmkid': '08',
-                      'mkname': '日志管理',
-                      'name': '日志管理',
-                      'url': '/xtgl-rjgl',
-                      'img': '',
-                      'zj': '/xtgl/Rjgl'
-                    }, {
-                      'mkid': '0804',
-                      'fmkid': '08',
-                      'mkname': '终端管理',
-                      'name': '终端管理',
-                      'url': '/xtgl-zdgl',
-                      'img': '',
-                      'zj': '/xtgl/Zdgl'
-                    }, {
-                      'mkid': '080401',
-                      'fmkid': '0804',
-                      'mkname': '报警参数设置',
-                      'name': '报警参数设置',
-                      'url': '/xtgl-zdgl-zdglbjcs',
-                      'img': '',
-                      'zj': '/xtgl/Zdglbjcs'
-                    }, {
-                      'mkid': '080402',
-                      'fmkid': '0804',
-                      'mkname': '车辆管理终端',
-                      'name': '车辆管理终端',
-                      'url': '/xtgl-zdgl-zdglclzd',
-                      'img': '',
-                      'zj': '/xtgl/Zdglclzd'
-                    }, {
-                      'mkid': '0805',
-                      'fmkid': '08',
-                      'mkname': '预设信息',
-                      'name': '预设信息',
-                      'url': '/xtgl-ysxx',
-                      'img': '',
-                      'zj': '/xtgl/Ysxx'
-                    }, {
-                      'mkid': '080501',
-                      'fmkid': '0805',
-                      'mkname': '围栏信息管理',
-                      'name': '围栏信息管理',
-                      'url': '/xtgl-ysxx-wlxxgl',
-                      'img': '',
-                      'zj': '/xtgl/Wlxxgl'
-                    }, {
-                      'mkid': '080502',
-                      'fmkid': '0805',
-                      'mkname': '围栏关联管理',
-                      'name': '围栏关联管理',
-                      'url': '/xtgl-ysxx-wlglgl',
-                      'img': '',
-                      'zj': '/xtgl/Wlglgl'
-                    }, {
-                      'mkid': '080503',
-                      'fmkid': '0805',
-                      'mkname': '路线信息管理',
-                      'name': '路线信息管理',
-                      'url': '/xtgl-ysxx-lxgl',
-                      'img': '',
-                      'zj': '/xtgl/Lxxxgl'
-                    }]
-                  )
-//                  Object.assign(axios.defaults.headers, {'Authorization': resp.data.token})
-//                  sessionStorage.setItem('token', resp.data.token)
-                }
-              }
-            }).catch(e => {
-              this.loginLoading = false
+      formRules: {
+        name: [
+          {required: true, message: '请输入账号', trigger: 'blur'}
+        ],
+        pwd: [
+          {required: true, message: '请输入密码', trigger: 'blur'}
+        ]
+      }
+    }
+  },
+  methods: {
+    checkJs (mks) {
+      let menu = mkTree(mks)
+      localStorage.setItem('mks', JSON.stringify(mks))
+      localStorage.setItem('menu', JSON.stringify(menu))
+      let addRoutes = [{
+        path: '/mainpage',
+        component: () => import('./pages/Mainpage.vue'),
+        name: '',
+        isMenu: true,
+        children: menu
+      }]
+      console.log(addRoutes)
+      sessionStorage.setItem('Routers', JSON.stringify(addRoutes))
+      this.$router.addRoutes(addRoutes)
+      this.$router.push({path: '/mainpage'})
+    },
+    onLogin () {
+      var loginParams = {username: this.form.name, password: this.form.pwd}
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.loginLoading = true
+          this.$api.login(loginParams).then(resp => {
+            console.log(resp)
+            this.loginLoading = false
+            if (resp.status !== 200) {
               this.$message({
                 message: '出错了',
                 type: 'error'
               })
-              console.log(e)
-            })
-          }
-        })
-      },
-      getDict () {
-        this.$api.getDict().then(resp => {
-          let dicts = {}
-          resp.data.map(item => {
-            if (!dicts[item.mtype]) {
-              dicts[item.mtype] = []
+            } else {
+              console.log('resp.data', resp.data.result)
+              if (resp.data.code === 400) {
+                this.$message({
+                  message: resp.data.message,
+                  type: 'error'
+                })
+              } else {
+                if (this.checked) {
+                  localStorage.setItem('user', JSON.stringify(loginParams))
+                } else {
+                  localStorage.removeItem('user')
+                }
+                sessionStorage.setItem('user', JSON.stringify(resp.data))
+                // this.checkJs(resp.data.mks)  数据库数据或者自己测试数据组装页面构成
+                // Object.assign(axios.defaults.headers, {'Authorization': resp.data.token})
+                // sessionStorage.setItem('token', resp.data.token)
+              }
             }
-            dicts[item.mtype].push(item)
+          }).catch(e => {
+            this.loginLoading = false
+            // this.$message({message: '出错了', type: 'error'})
+            console.log(e)
           })
-          console.log('getDict', dicts)
-          localStorage.removeItem('Dict')
-          localStorage.setItem('Dict', JSON.stringify(dicts))
-        }).catch(e => {
-          console.log(e)
-        })
-      }
-    },
-    computed: {},
-    mounted () {
-//      this.getDict()
-      var loginuser = localStorage.getItem('user')
-      loginuser = JSON.parse(loginuser)
-      if (loginuser !== null) {
-        this.checked = true
-        this.form.name = loginuser.username
-        this.form.pwd = loginuser.password
-      }
-      document.onkeydown = (e) => {
-        if (e.keyCode === 13) {
-          this.onLogin()
+          sessionStorage.setItem('user', JSON.stringify(loginParams))// 不然被main.js拦截进不了首页
+          this.$router.push({path: '/mainpage1'})
+
+          /* this.checkJs(
+            [{
+              'mkid': '01',
+              'fmkid': '',
+              'mkname': '首页',
+              'name': '首页',
+              'url': '/sy-api',
+              'img': 'iconfont icon-binghaijilu',
+              'zj': '/apipage/ApiPage'
+            }, {
+              'mkid': '02',
+              'fmkid': '',
+              'mkname': '首页2',
+              'name': '首页2',
+              'url': '/sy-api',
+              'img': 'iconfont icon-binghaijilu',
+              'zj': '/apipage/ApiMain'
+            }]
+          ) */
         }
+      })
+    },
+    getDict () {
+    }
+  },
+  computed: {},
+  mounted () {
+    var loginuser = localStorage.getItem('user')
+    loginuser = JSON.parse(loginuser)
+    if (loginuser !== null) {
+      this.checked = true
+      this.form.name = loginuser.username
+      this.form.pwd = loginuser.password
+    }
+    document.onkeydown = (e) => {
+      if (e.keyCode === 13) {
+        this.onLogin()
       }
     }
   }
+}
 </script>
 <!-- scss语法引用是 注:lang="scss" -->
 <style lang="scss">

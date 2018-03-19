@@ -17,37 +17,36 @@
 </template>
 
 <script>
-  export default {
-    name: 'verticalLayout',
-    props: {
-      hIsCollapse: {
-        type: Boolean, default: true
-      },
-      hHeightColse: {
-        type: String, default: '0px'
-      },
-      hHeightOpen: {
-        type: String, default: '0px'
-      },
-      fIsCollapse: {
-        type: Boolean, default: true
-      },
-      fHeightColse: {
-        type: String, default: '0px'
-      },
-      fHeightOpen: {
-        type: String, default: '0px'
-      }
+export default {
+  name: 'verticalLayout',
+  props: {
+    hIsCollapse: {
+      type: Boolean, default: true
     },
-    components: {},
-    data () {
-      return {
-      }
+    hHeightColse: {
+      type: String, default: '0px'
     },
-    methods: {},
-    mounted () {
+    hHeightOpen: {
+      type: String, default: '0px'
+    },
+    fIsCollapse: {
+      type: Boolean, default: true
+    },
+    fHeightColse: {
+      type: String, default: '0px'
+    },
+    fHeightOpen: {
+      type: String, default: '0px'
     }
+  },
+  components: {},
+  data () {
+    return {}
+  },
+  methods: {},
+  mounted () {
   }
+}
 </script>
 <style lang="scss">
   .verticalLayout{

@@ -11,61 +11,60 @@
 </template>
 
 <script>
-  import flv from 'flv.js'
-  export default {
-    components: {},
-    props: {
-      videoUrl: {
-        type: String
-      },
-      videotype: {
-        type: String
-      },
-      show: {
-        type: Boolean
-      }
+import flv from 'flv.js'
+export default {
+  components: {},
+  props: {
+    videoUrl: {
+      type: String
     },
-    data () {
-      return {
-        showVideo: false,
-        flvPlayer: null,
-        id: ''
-      }
+    videotype: {
+      type: String
     },
-    methods: {
-      close () {
-        this.showVideo = !this.showVideo
-        this.flvPlayer.pause()
-        this.flvPlayer.unload()
-        this.flvPlayer.detachMediaElement()
-        this.flvPlayer.destroy()
-        this.flvPlayer = null
-        this.flvPlayer.$emit('close', false)
-      }
-    },
-    created () {
-      this.id = 'videoElement_' + config.uuid(2, 16)
-    },
-    mounted () {
-      this.showVideo = this.show
-      if (flv.isSupported()) {
-        var videoElement = $('#' + this.id)[0]
-        console.log($('#' + this.id))
-        console.log(videoElement)
-        this.flvPlayer = flv.createPlayer({
-//          type: 'mp4',
-//          url: 'http://vjs.zencdn.net/v/oceans.mp4'
-          type: this.videotype,
-          url: this.videoUrl
-        })
-        this.flvPlayer.attachMediaElement(videoElement)
-        this.flvPlayer.load()
-        this.flvPlayer.play()
-      }
-    },
-    watch: {
+    show: {
+      type: Boolean
     }
-  }
+  },
+  data () {
+    return {
+      showVideo: false,
+      flvPlayer: null,
+      id: ''
+    }
+  },
+  methods: {
+    close () {
+      this.showVideo = !this.showVideo
+      this.flvPlayer.pause()
+      this.flvPlayer.unload()
+      this.flvPlayer.detachMediaElement()
+      this.flvPlayer.destroy()
+      this.flvPlayer = null
+      this.flvPlayer.$emit('close', false)
+    }
+  },
+  created () {
+    this.id = 'videoElement_' + config.uuid(2, 16)
+  },
+  mounted () {
+    this.showVideo = this.show
+    if (flv.isSupported()) {
+      var videoElement = $('#' + this.id)[0]
+      console.log($('#' + this.id))
+      console.log(videoElement)
+      this.flvPlayer = flv.createPlayer({
+        // type: 'mp4',
+        // url: 'http://vjs.zencdn.net/v/oceans.mp4'
+        type: this.videotype,
+        url: this.videoUrl
+      })
+      this.flvPlayer.attachMediaElement(videoElement)
+      this.flvPlayer.load()
+      this.flvPlayer.play()
+    }
+  },
+  watch: {}
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -29,7 +29,7 @@ Object.assign(axios.defaults, defaults)
 // console.log(axios.defaults)
 axios.interceptors.request.use(
   config => {
-    if (sessionStorage.getItem('token')) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
+    if (sessionStorage.getItem('token')) { // 判断是否存在token，如果存在的话，则每个http header都加上token
       config.headers.Authorization = sessionStorage.getItem('token')
     }
     return config
@@ -53,7 +53,7 @@ axios.interceptors.response.use(
           // window.location.href = '/'
       }
     }
-    return Promise.reject(error.response.data)   // 返回接口返回的错误信息
+    return Promise.reject(error.response.data) // 返回接口返回的错误信息
   })
 
 // 调试修修改

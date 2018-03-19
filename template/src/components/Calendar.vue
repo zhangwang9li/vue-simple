@@ -34,7 +34,7 @@
           <div class="calendar-info">
             <!-- {{monthString}} -->
             <span>{{year}}</span>
-            <span v-for="(m,index) in months" v-if="index ===month">{{m}}</span>
+            <span v-for="(m,index) in months" :key="index" v-if="index ===month">{{m}}</span>
           </div>
         </div>
         <div class="calendar">
@@ -42,12 +42,12 @@
             <table cellpadding="5">
               <thead>
               <tr>
-                <td v-for="week in weeks" class="week">{{week}}</td>
+                <td v-for="(week,index) in weeks" :key="index" class="week">{{week}}</td>
               </tr>
               </thead>
-              <tr v-for="(day,k1) in days">
+              <tr v-for="(day,k1) in days" :key="k1">
                 <td v-for="(child,k2) in day" :class="{'selected':child.selected,'disabled':child.disabled}"
-                    @click="select(k1,k2,$event)">
+                    @click="select(k1,k2,$event)" :key="k2">
                   <input v-if="isCheckBoxShow" style="position: absolute;left: 0;" type="checkbox" disabled :checked="child.selected">
                   <span :class="{'red':k2==0||k2==6||((child.isLunarFestival||child.isGregorianFestival) && lunar)}">{{child.day}}</span>
                   <div class="text"
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+/* eslint-disable */
   import calendar from '../../static/calendar.js'
   export default {
     name: 'calendar',

@@ -9,7 +9,7 @@ import store from './vuex/store'
 import Vuex from 'vuex'
 import routes from './routes'
 import api from './api/index'
-import {mkTree} from './mk'
+// import {mkTree} from './mk'
 import VueAMap from 'vue-amap'
 import promise from 'es6-promise'
 
@@ -30,27 +30,17 @@ Vue.prototype.$api = api
 const router = new VueRouter({
   routes
 })
-let permission = sessionStorage.getItem('user')
-if (permission) {
-  let menu = mkTree(JSON.parse(localStorage.getItem('mks')))
-  let zy = []
-  menu.map(item => {
-    if (item.zj !== '') {
-      zy.push(item)
-    }
-    item.children.map(c => {
-      zy.push(c)
-    })
-  })
-  let addRoutes = [{
-    path: '/mainpage',
-    component: require('./pages/MainPage.vue'),
-    name: '',
-    isMenu: true,
-    children: zy
-  }]
-  router.addRoutes(addRoutes)
-}
+// let permission = sessionStorage.getItem('user')
+// if (permission) {
+//   let addRoutes = [{
+//     path: '/mainpage',
+//     component: require('./pages/MainPage.vue'),
+//     name: '',
+//     isMenu: true,
+//     children: mkTree(JSON.parse(localStorage.getItem('mks')))
+//   }]
+//   router.addRoutes(addRoutes)
+// }
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     sessionStorage.removeItem('user')

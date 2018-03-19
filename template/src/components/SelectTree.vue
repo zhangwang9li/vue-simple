@@ -13,92 +13,97 @@
              @reverseSelection="reverseSelection"
              :PrimaryKey="PrimaryKey" :PrimaryKeyValue="value" style="min-height: 150px;max-height: 200px;overflow: auto"></zTree>
       <div class="button" v-show="isCheckBox">
-        <el-button class="qu_xiao" type="text" size="small" @click="flag = false">取消</el-button>
+        <el-button class="qu_xiao" type="text" size="small" @click="close()">取消</el-button>
         <el-button class="bao_cun" size="small"  @click="getSelectChecked()">确认</el-button>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import zTree from './TreeMenu.vue'
-  export default {
-    components: {zTree},
-    props: {
-      isDefaultselect: {
-        type: Boolean,
-        default: false
-      },
-      value: {
-        type: [String, Array]
-      },
-      zNodes: {
-        type: Array
-      },
-      urlFunc: {
-        type: Function
-      },
-      placeholder: {
-        type: String,
-        default: ''
-      },
-      isCheckBox: {
-        type: Boolean,
-        default: false
-      },
-      isCheckchild: {
-        type: Boolean,
-        default: false
-      },
-      easyData: {
-        type: Object,
-        default: () => { return null }
-      },
-      dataKey: {
-        type: Object,
-        default: () => { return {name: 'name'} }
-      },
-      PrimaryKey: {
-        type: String,
-        default: 'id'
+/* eslint-disable */
+import zTree from './TreeMenu.vue'
+export default {
+  components: {zTree},
+  props: {
+    isDefaultselect: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: [String, Array]
+    },
+    zNodes: {
+      type: Array
+    },
+    urlFunc: {
+      type: Function
+    },
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    isCheckBox: {
+      type: Boolean,
+      default: false
+    },
+    isCheckchild: {
+      type: Boolean,
+      default: false
+    },
+    easyData: {
+      type: Object,
+      default: () => {
+        return null
       }
     },
-    data () {
-      return {
-        setting: {
-          view: {
-            showIcon: false
-          },
-          data: {
-            simpleData: {
-              enable: true
-            },
-            key: this.dataKey
-          },
-          callback: {
-            beforeClick: this.zTreeBeforeClick,
-            onClick: this.checkedMemu
-          }
+    dataKey: {
+      type: Object,
+      default: () => {
+        return {name: 'name'}
+      }
+    },
+    PrimaryKey: {
+      type: String,
+      default: 'id'
+    }
+  },
+  data() {
+    return {
+      setting: {
+        view: {
+          showIcon: false
         },
-        nodes: [],
-        flag: false,
-        texts: '',
-        id: config.uuid(8, 16)
-      }
-    },
-    mounted () {
-      if (this.value instanceof Array) {
-        this.texts = ''
-      } else {
-        this.texts = this.value
-      }
-      this.nodes = this.zNodes
-      if (this.urlFunc && !this.nodes) {
-        this.urlFunc('').then(resp => {
-          this.nodes = resp.data
-          Object.assign(this.nodes[0], {open: true})
-          if (this.isDefaultselect) {
-            this.$emit('treeSelect', this.nodes[0])
-          }
+        data: {
+          simpleData: {
+            enable: true
+          },
+          key: this.dataKey
+        },
+        callback: {
+          beforeClick: this.zTreeBeforeClick,
+          onClick: this.checkedMemu
+        }
+      },
+      nodes: [],
+      flag: false,
+      texts: '',
+      id: config.uuid(8, 16)
+    }
+  },
+  mounted() {
+    if (this.value instanceof Array) {
+      this.texts = ''
+    } else {
+      this.texts = this.value
+    }
+    this.nodes = this.zNodes
+    if (this.urlFunc && !this.nodes) {
+      this.urlFunc('').then(resp => {
+        this.nodes = resp.data
+        Object.assign(this.nodes[0], {open: true})
+        if (this.isDefaultselect) {
+          this.$emit('treeSelect', this.nodes[0])
+        }
 //          this.nodes = [
 //            {id: 1, pId: 0, name: '父节点1 - 展开', open: true},
 //            {id: 11, pId: 1, name: '父节点11 - 折叠'},
@@ -129,124 +134,137 @@
 //            {id: 234, pId: 23, name: '叶子节点234'},
 //            {id: 3, pId: 0, name: '父节点3 - 没有子节点', isParent: true}
 //          ]
-        })
-      }
-      window.setTimeout(() => {
-        document.addEventListener('click', (event) => {
-          var e = event || window.event // 浏览器兼容性
-          var elem = e.target || e.srcElement
-          let ischick = false
-          while (elem) { // 循环判断至跟节点，防止点击的是div子元素
-            if (elem.className && elem.className === 'selectWarp') {
-              ischick = true
-              return
-            }
-            if (elem.className && elem.className === 'select el-input el-input--small') {
-              ischick = true
-              return
-            }
-            elem = elem.parentNode
+      })
+    }
+    window.setTimeout(() => {
+      document.addEventListener('click', (event) => {
+        var e = event || window.event // 浏览器兼容性
+        var elem = e.target || e.srcElement
+        let ischick = false
+        while (elem) { // 循环判断至跟节点，防止点击的是div子元素
+          if (elem.className && elem.className === 'selectWarp') {
+            ischick = true
+            return
           }
-          this.flag = ischick
-          document.removeEventListener('click', () => {}, false)
+          if (elem.className && elem.className === 'select el-input el-input--small') {
+            ischick = true
+            return
+          }
+          elem = elem.parentNode
+        }
+        this.flag = ischick
+        document.removeEventListener('click', () => {
         }, false)
-      }, 1000)
+      }, false)
+    }, 1000)
+  },
+  methods: {
+    zTreeBeforeClick(treeId, treeNode, clickFlag) {
+      if (this.isCheckchild) {
+        if (treeNode.children && treeNode.children.length > 0) {
+          var treeObj = $.fn.zTree.getZTreeObj(this.id)
+          treeObj.expandNode(treeNode, true)
+          return false
+        }
+      }
     },
-    methods: {
-      zTreeBeforeClick (treeId, treeNode, clickFlag) {
-        if (this.isCheckchild) {
-          if (treeNode.children && treeNode.children.length > 0) {
-            var treeObj = $.fn.zTree.getZTreeObj(this.id)
-            treeObj.expandNode(treeNode, true)
-            return false
-          }
+    checkedMemu(event, treeId, treeNode) {
+      if (this.setting.check === undefined) {
+        this.PrimaryKeyValue = treeNode[this.PrimaryKey]
+        this.texts = treeNode[this.dataKey.name]
+      }
+      this.flag = !this.flag
+      this.reverseSelection(treeNode)
+    },
+    showMemu() {
+      this.flag = !this.flag
+    },
+    close() {
+      this.PrimaryKeyValue = null
+      this.flag = false
+    },
+    getSelectChecked() {
+      var treeObj = $.fn.zTree.getZTreeObj(this.id)
+      var nodes = treeObj.getCheckedNodes(true)
+      let treeSelectNodes = []
+      var treename = ''
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].isParent === false) {
+          treename = treename + ',' + nodes[i][this.dataKey.name]
+          treeSelectNodes.push(nodes[i])
         }
-      },
-      checkedMemu (event, treeId, treeNode) {
-        if (this.setting.check === undefined) {
-          this.PrimaryKeyValue = treeNode[this.PrimaryKey]
-          this.texts = treeNode[this.dataKey.name]
-        }
-        this.flag = !this.flag
-        this.reverseSelection(treeNode)
-      },
-      showMemu () {
-        this.flag = !this.flag
-      },
-      getSelectChecked () {
-        var treeObj = $.fn.zTree.getZTreeObj(this.id)
-        var nodes = treeObj.getCheckedNodes(true)
+      }
+      this.reverseSelection(treeSelectNodes)
+      this.flag = false
+    },
+    checkedCheckBoxMemu(event, treeId, treeNode) {
+      var treeObj = $.fn.zTree.getZTreeObj(this.id)
+      console.log(treeNode)
+      if (treeNode.checked) {
+        treeObj.cancelSelectedNode(treeNode)
+        treeObj.checkNode(treeNode, false, true)
+      } else {
+        treeObj.selectNode(treeNode)
+        treeObj.checkNode(treeNode, true, true)
+      }
+      var nodes = treeObj.getCheckedNodes(true)
+      nodes.map(node => {
+        treeObj.selectNode(node, true)
+      })
+    },
+    zTreeOnCheck(event, treeId, treeNode) {
+      var treeObj = $.fn.zTree.getZTreeObj(this.id)
+      treeObj.selectNode(treeNode, true)
+      treeObj.checkNode(treeNode, true, true)
+      treeObj.updateNode(treeNode, true)
+    },
+    reverseSelection(nodes) {
+      if (!nodes) {
+        return
+      }
+      if (nodes instanceof Array) {
         let treeSelectNodes = []
+        let codes = []
         var treename = ''
         for (var i = 0; i < nodes.length; i++) {
           if (nodes[i].isParent === false) {
             treename = treename + ',' + nodes[i][this.dataKey.name]
             treeSelectNodes.push(nodes[i])
+            codes.push(nodes[i][this.PrimaryKey])
           }
         }
         this.texts = treename.slice(1)
-        this.flag = false
-        this.$emit('input', this.texts)
+        this.$emit('input', codes)
         this.$emit('treeSelect', treeSelectNodes)
-      },
-      checkedCheckBoxMemu (event, treeId, treeNode) {
-        var treeObj = $.fn.zTree.getZTreeObj(this.id)
-        console.log(treeNode)
-        if (treeNode.checked) {
-          treeObj.cancelSelectedNode(treeNode)
-          treeObj.checkNode(treeNode, false, true)
-        } else {
-          treeObj.selectNode(treeNode)
-          treeObj.checkNode(treeNode, true, true)
-        }
-        var nodes = treeObj.getCheckedNodes(true)
-        nodes.map(node => {
-          treeObj.selectNode(node, true)
-        })
-      },
-      zTreeOnCheck (event, treeId, treeNode) {
-        var treeObj = $.fn.zTree.getZTreeObj(this.id)
-        treeObj.selectNode(treeNode, true)
-        treeObj.checkNode(treeNode, true, true)
-        treeObj.updateNode(treeNode, true)
-      },
-      reverseSelection (nodes) {
-        if (!nodes) {
-          return
-        }
-        if (nodes instanceof Array) {
-          let treeSelectNodes = []
-          var treename = ''
-          for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].isParent === false) {
-              treename = treename + ',' + nodes[i][this.dataKey.name]
-              treeSelectNodes.push(nodes[i])
-            }
-          }
-          this.$emit('input', treename.slice(1))
-          this.$emit('treeSelect', treeSelectNodes)
-        } else {
-          this.texts = nodes[this.dataKey.name]
-          this.$emit('input', nodes[this.PrimaryKey])
-          this.$emit('treeSelect', nodes)
-        }
-      }
-    },
-    created () {
-      if (this.isCheckBox) {
-        Object.assign(this.setting, {check: {enable: true, chkStyle: 'checkbox'}, callback: {onClick: this.checkedCheckBoxMemu, onCheck: this.zTreeOnCheck}})
-      }
-      if (this.easyData) {
-        this.setting.data.simpleData = this.easyData
-      }
-    },
-    watch: {
-      value: {
-        handler (curVal, oldVal) {
-          this.texts = curVal
-        },
-        deep: true
+      } else {
+        this.texts = nodes[this.dataKey.name]
+        this.$emit('input', nodes[this.PrimaryKey])
+        this.$emit('treeSelect', nodes)
       }
     }
+  },
+  created() {
+    if (this.isCheckBox) {
+      Object.assign(this.setting, {
+        check: {enable: true, chkStyle: 'checkbox'},
+        callback: {onClick: this.checkedCheckBoxMemu, onCheck: this.zTreeOnCheck}
+      })
+    }
+    if (this.easyData) {
+      this.setting.data.simpleData = this.easyData
+    }
+  },
+  watch: {
+    value: {
+      handler(curVal, oldVal) {
+        if (this.value instanceof Array) {
+          console.log(this.value)
+        } else {
+          this.texts = curVal
+        }
+      },
+      deep: true
+    }
   }
+}
 </script>

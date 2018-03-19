@@ -7,7 +7,8 @@
     <aside :style="'width: '+ (lIsCollapse ? lWidthOpen : lWidthColse)">
       <slot name="left"></slot>
     </aside>
-    <div class="horizontalLayout-main" :style="'width:calc(100% - '+ (lIsCollapse ? lWidthOpen : lWidthColse) + ' - ' + (rIsCollapse ? rWidthOpen : rWidthColse) + ')'">
+    <div class="horizontalLayout-main"
+         :style="'width:calc(100% - '+ (lIsCollapse ? lWidthOpen : lWidthColse) + ' - ' + (rIsCollapse ? rWidthOpen : rWidthColse) + ')'">
       <slot></slot>
     </div>
     <section :style="'width: '+ (rIsCollapse ? rWidthOpen : rWidthColse)">
@@ -16,38 +17,37 @@
   </div>
 </template>
 
-
 <script>
-  export default {
-    name: 'horizontalLayout',
-    props: {
-      lIsCollapse: {
-        type: Boolean, default: true
-      },
-      lWidthColse: {
-        type: String, default: '0px'
-      },
-      lWidthOpen: {
-        type: String, default: '0px'
-      },
-      rIsCollapse: {
-        type: Boolean, default: true
-      },
-      rWidthColse: {
-        type: String, default: '0px'
-      },
-      rWidthOpen: {
-        type: String, default: '0px'
-      }
+export default {
+  name: 'horizontalLayout',
+  props: {
+    lIsCollapse: {
+      type: Boolean, default: true
     },
-    components: {},
-    data () {
-      return {}
+    lWidthColse: {
+      type: String, default: '0px'
     },
-    methods: {},
-    mounted () {
+    lWidthOpen: {
+      type: String, default: '0px'
+    },
+    rIsCollapse: {
+      type: Boolean, default: true
+    },
+    rWidthColse: {
+      type: String, default: '0px'
+    },
+    rWidthOpen: {
+      type: String, default: '0px'
     }
+  },
+  components: {},
+  data () {
+    return {}
+  },
+  methods: {},
+  mounted () {
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -56,20 +56,24 @@
     height: 100%;
     position: absolute;
     width: 100%;
-    aside {
-      position: relative;
-      float: left;
-      height: 100%;
-    }
-    .horizontalLayout-main {
-      position: relative;
-      height: 100%;
-      float: left;
-    }
-    section {
-      position: relative;
-      height: 100%;
-      float: right;
-    }
+
+  aside {
+    position: relative;
+    float: left;
+    height: 100%;
+  }
+
+  .horizontalLayout-main {
+    position: relative;
+    height: 100%;
+    float: left;
+  }
+
+  section {
+    position: relative;
+    height: 100%;
+    float: right;
+  }
+
   }
 </style>

@@ -18,7 +18,7 @@ const mutations = {
 const actions = {
   saveMenu ({commit}, menus) {
     console.log(menus)
-    commit('setMenu', menus)    // 提交到mutations中处理
+    commit('setMenu', menus)// 提交到mutations中处理
   }
 }
 const getters = {

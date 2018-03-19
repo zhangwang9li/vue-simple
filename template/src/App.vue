@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
+  <div id="app" class="">
     <router-view/>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'app'
-  }
+export default {
+  name: 'app'
+}
 </script>
 
-<style>
+<style lang="scss">
+  @import "./assets/index.scss";
   *{
     margin: 0px;
     padding: 0px;
