@@ -11,7 +11,8 @@
         <div></div>
         <div slot="right" class="layout-div">
           <div class="logo">
-            <el-button @click="addTheme">修改主题</el-button>
+            <span @click="addTheme">修改主题</span>
+            <span @click="openApi">api说明</span>
           </div>
         </div>
       </HorizontalLayout>
@@ -42,6 +43,9 @@ export default {
         $('#app').addClass('themeA')
       }
       this.theme = !this.theme
+    },
+    openApi () {
+      window.open('http://211.101.37.245:9083/dist/index.html')
     }
   },
   mounted () {
@@ -58,5 +62,12 @@ export default {
   font-size: 24px;
   color: #fff;
   text-align: center;
+}
+.logo span{
+  font-size: 20px;
+  cursor: pointer;
+}
+.logo span:hover{
+  color: #63baff;
 }
 </style>
