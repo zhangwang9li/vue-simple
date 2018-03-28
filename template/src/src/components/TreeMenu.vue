@@ -43,6 +43,7 @@ export default {
     checkSelect() {
       if (!this.setting.check) {
         let selectNode = this.tree.getNodeByParam(this.PrimaryKey, this.PrimaryKeyValue, null)
+        console.log('1111', this.PrimaryKeyValue, selectNode)
         this.tree.selectNode(selectNode)
         this.tree.expandNode(selectNode, true, false)
         this.$emit('reverseSelection', selectNode)
@@ -53,6 +54,7 @@ export default {
         }
         this.PrimaryKeyValue.map(item => {
           let selectNode = this.tree.getNodeByParam(this.PrimaryKey, item[this.PrimaryKey], null)
+          console.log('this.PrimaryKeyValue', this.PrimaryKeyValue, this.tree, item)
           this.tree.selectNode(selectNode)
           this.tree.checkNode(selectNode, true, true)
           selectNodes.push(selectNode)

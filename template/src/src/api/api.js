@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 let base = config.ip // 打包地址http://192.168.0.200:9001
+// let base = 'http://192.168.8.18:9003' // 打包地址http://192.168.0.200:9001
+// let base = '/api' // 打包地址http://192.168.0.200:9001
 const defaults = {
   baseURL: base + '',
   headers: {
@@ -23,6 +25,8 @@ const defaults = {
   }
 }
 Object.assign(axios.defaults, defaults)
+// axios.defaults.withCredentials = true
+// console.log(axios.defaults)
 axios.interceptors.request.use(
   config => {
     if (sessionStorage.getItem('token')) { // 判断是否存在token，如果存在的话，则每个http header都加上token

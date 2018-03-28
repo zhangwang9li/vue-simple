@@ -9,10 +9,12 @@ import store from './vuex/store'
 import Vuex from 'vuex'
 import routes from './routes'
 import api from './api/index'
+// import {mkTree} from './mk'
 import VueAMap from 'vue-amap'
 import promise from 'es6-promise'
-// import {mkTree} from './mk'
 
+// import Mock from './mock'
+// Mock.bootstrap()// 注意：此方法为post参数请求模拟接口测试，ie不支持(不明白)  mock位ajax拦截，使用json-server或其中一种，有冲突
 promise.polyfill()
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
