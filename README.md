@@ -11,6 +11,7 @@ Use templates need to be installed [vue-cli](https://github.com/vuejs/vue-cli).
 ``` bash
 $ npm install -g vue-cli
 $ vue init zhangwang9li/vue-simple my-project
+Not recommended for use "unit" "e2e" "test"
 $ cd my-project
 $ npm install
 $ npm run dev
